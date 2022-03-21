@@ -21,6 +21,7 @@ import cats.Foldable
 import cats.Monad
 import cats.effect.IO
 import cats.effect.kernel.Async
+import cats.effect.kernel.Concurrent
 import cats.effect.kernel.Resource
 import cats.effect.kernel.Sync
 import cats.effect.std.Dispatcher
@@ -147,6 +148,11 @@ object Modifier:
       using F: Sync[F]): Modifier[F, E, Resource[F, E2]] with
     def modify(e2: Resource[F, E2], e: E) =
       e2.evalMap(e2 => F.delay(e.appendChild(e2)))
+
+  given forElementStream[F[_]: Concurrent, E <: dom.Element, E2 <: dom.Element](
+      using F: Sync[F]): Modifier[F, E, Stream[Rx[F, *], Resource[Rx[F, *], E2]]] with
+    def modify(e2s: Stream[Rx[F, *], Resource[Rx[F, *], E2]], e: E) =
+      ???
 
 final class HtmlAttr[F[_], V] private[calico] (key: String, codec: Codec[V, String]):
   def :=(v: V): HtmlAttr.Modified[F, V] =

@@ -22,7 +22,6 @@
     
     <link rel="stylesheet" type="text/css" href="helium/icofont.min.css" />
     <link rel="stylesheet" type="text/css" href="helium/laika-helium.css" />
-    <link rel="stylesheet" type="text/css" href="site/mdoc.css" />
     <link rel="stylesheet" type="text/css" href="site/styles.css" />
     <script src="helium/laika-helium.js"></script>
     
@@ -41,7 +40,7 @@
         
       </div>
 
-      <a class="image-link" href="https://typelevel.org"><img src="https://typelevel.org/img/logo.svg"></a>
+      <a class="icon-link" href="index.html"><i class="icofont-laika" title="Home"></i></a>
 
       <span class="row links"><a class="icon-link svg-link" href="https://github.com/scala-steward/calico"><span title="Source Code"><svg class="svg-icon" width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
   <g class="svg-shape">
@@ -66,8 +65,8 @@
         <li class="level1"><a href="hello-world.html">Hello World</a></li>
         <li class="level1"><a href="counter.html">Counter</a></li>
         <li class="level1"><a href="time.html">Time</a></li>
-        <li class="level1 active"><a href="#">Widgets</a></li>
         <li class="level1"><a href="todomvc.html">TodoMVC</a></li>
+        <li class="level1 active"><a href="#">Widgets</a></li>
       </ul>
 
       <ul class="nav-list">
@@ -99,6 +98,7 @@
       <main class="content">
 
         <h1 id="widgets" class="title">Widgets</h1>
+        <p>This is <em>definitely</em> experimental, so do not take this example too seriously, but it explores the idea of using shapeless to automatically derive &quot;widgets&quot; for <code>case class</code>es.</p>
         <pre><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">calico</span><span>.*
 </span><span class="keyword">import</span><span> </span><span class="identifier">calico</span><span>.</span><span class="identifier">dsl</span><span>.</span><span class="identifier">io</span><span>.*
 </span><span class="keyword">import</span><span> </span><span class="identifier">calico</span><span>.</span><span class="identifier">syntax</span><span>.*
@@ -125,7 +125,7 @@
 
         <hr style="margin-top: 30px"/>
         <footer style="font-size: 90%; text-align: center">
-          calico is a <a href="https://typelevel.org/">Typelevel</a> project distributed under the <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a> license.
+          calico is distributed under the <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a> license.
         </footer>
 
       </main>

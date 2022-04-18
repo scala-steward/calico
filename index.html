@@ -22,7 +22,6 @@
     
     <link rel="stylesheet" type="text/css" href="helium/icofont.min.css" />
     <link rel="stylesheet" type="text/css" href="helium/laika-helium.css" />
-    <link rel="stylesheet" type="text/css" href="site/mdoc.css" />
     <link rel="stylesheet" type="text/css" href="site/styles.css" />
     <script src="helium/laika-helium.js"></script>
     
@@ -41,7 +40,7 @@
         
       </div>
 
-      <a class="image-link" href="https://typelevel.org"><img src="https://typelevel.org/img/logo.svg"></a>
+      <a class="icon-link" href="index.html"><i class="icofont-laika" title="Home"></i></a>
 
       <span class="row links"><a class="icon-link svg-link" href="https://github.com/scala-steward/calico"><span title="Source Code"><svg class="svg-icon" width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
   <g class="svg-shape">
@@ -66,8 +65,8 @@
         <li class="level1"><a href="hello-world.html">Hello World</a></li>
         <li class="level1"><a href="counter.html">Counter</a></li>
         <li class="level1"><a href="time.html">Time</a></li>
-        <li class="level1"><a href="widget.html">Widgets</a></li>
         <li class="level1"><a href="todomvc.html">TodoMVC</a></li>
+        <li class="level1"><a href="widget.html">Widgets</a></li>
       </ul>
 
       <ul class="nav-list">
@@ -102,19 +101,20 @@
 
       <main class="content">
 
-        <h1 id="calico" class="title">calico</h1>
-        <p><strong>calico</strong> is an (early-stage) &quot;framework&quot; for building web applications in <a href="https://www.scala-js.org/">Scala.js</a> with <a href="https://typelevel.org/cats-effect/">Cats Effect 3</a> and <a href="https://fs2.io/">fs2</a>. I say &quot;framework&quot; because <strong>calico</strong> introduces no new concepts of its own; it is effectively a DSL. If you enjoy working with Cats Effect and fs2 then (I hope) you will like <strong>calico</strong> as well.</p>
+        <h1 id="calico" class="title">Calico</h1>
+        <p><strong>Calico</strong> is a UI library for the <a href="https://typelevel.org/">Typelevel.js</a> ecosystem. It leverages the abstractions provided by <a href="https://typelevel.org/cats-effect/">Cats Effect</a> and <a href="https://fs2.io/">FS2</a> to provide a fluent DSL for building web applications that are composable, reactive, and safe. If you enjoy working with Cats Effect and FS2 then I hope that you will like <strong>Calico</strong> as well.</p>
         
         <h3 id="acknowledgements" class="section">Acknowledgements<a class="anchor-link right" href="#acknowledgements"><i class="icofont-laika">&#xef71;</i></a></h3>
-        <p><strong>calico</strong> is heavily inspired by <a href="https://Laminar.dev/">Laminar</a>. I have yet only had time to plagiarize the DSL and a few of the examples ;)</p>
+        <p><strong>Calico</strong> is heavily inspired by <a href="https://Laminar.dev/">Laminar</a>. I have yet only had time to plagiarize the DSL and a few of the examples ;)</p>
         
         <h3 id="try-it" class="section">Try it!<a class="anchor-link right" href="#try-it"><i class="icofont-laika">&#xef71;</i></a></h3>
-        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;com.armanbilge&quot;</span><span> %%% </span><span class="string-literal">&quot;calico&quot;</span><span> % </span><span class="string-literal">&quot;0.0-7d6c7a2&quot;</span></code></pre>
+        <pre class="keep-together pdf epub"><code class="nohighlight"><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;com.armanbilge&quot;</span><span> %%% </span><span class="string-literal">&quot;calico&quot;</span><span> % </span><span class="string-literal">&quot;0.1-ef6bdc1-SNAPSHOT&quot;</span></code></pre>
+        <p>Please open issues (and PRs!) for anything and everything :)</p>
         
         <h2 id="core-concepts" class="section">Core concepts<a class="anchor-link right" href="#core-concepts"><i class="icofont-laika">&#xef71;</i></a></h2>
         
         <h3 id="components-and-resource-management" class="section">Components and resource management<a class="anchor-link right" href="#components-and-resource-management"><i class="icofont-laika">&#xef71;</i></a></h3>
-        <p>The most important idea behind <strong>calico</strong> is that each component of your app (and in fact your app itself) should be expressed as a <code>Resource[IO, HTMLElement]</code>.</p>
+        <p>The most important idea behind <strong>Calico</strong> is that each component of your app (and in fact your app itself) should be expressed as a <code>Resource[IO, HTMLElement]</code>.</p>
         <pre class="keep-together pdf epub"><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">cats</span><span>.</span><span class="identifier">effect</span><span>.*
 </span><span class="keyword">import</span><span> </span><span class="identifier">org</span><span>.</span><span class="identifier">scalajs</span><span>.</span><span class="identifier">dom</span><span>.*
 </span><span class="comment">// note: no calico import yet!
@@ -125,7 +125,7 @@
 </span><span class="keyword">def</span><span> </span><span class="declaration-name">component</span><span>[</span><span class="type-name">F</span><span>[</span><span class="identifier">_</span><span>]: </span><span class="type-name">Async</span><span>]: </span><span class="type-name">Resource</span><span>[</span><span class="type-name">F</span><span>, </span><span class="type-name">HTMLElement</span><span>] = ???</span></code></pre>
         <p>This <code>Resource</code> completely manages the lifecycle of that element and its children. When the <code>Resource</code> is allocated, it will create an instance of the <code>HTMLElement</code> and any supporting resources, such as background <code>Fiber</code>s or WebSocket connections. In kind, when the <code>Resource</code> is closed, these <code>Fiber</code>s and connections are canceled and released.</p>
         <p>Because <code>Resource[IO, HTMLElement]</code> is referentially-transparent, it naturally behaves as a &quot;builder&quot;. Your component can be re-used in multiple places in your application as well as un-mounted and re-mounted without worrying about crossed-wires or leaked resources. This makes it easy to compose components.</p>
-        <p>So far, none of this is specific to <strong>calico</strong>: we get all of this for free from Cats Effect. <strong>calico</strong> steps in with a friendly DSL to cut down the boilerplate.</p>
+        <p>So far, none of this is specific to <strong>Calico</strong>: we get all of this for free from Cats Effect. <strong>Calico</strong> steps in with a friendly DSL to cut down the boilerplate.</p>
         <pre class="keep-together pdf epub"><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">calico</span><span>.</span><span class="identifier">dsl</span><span>.</span><span class="identifier">io</span><span>.*
 </span><span class="keyword">import</span><span> </span><span class="identifier">cats</span><span>.</span><span class="identifier">effect</span><span>.*
 </span><span class="keyword">import</span><span> </span><span class="identifier">org</span><span>.</span><span class="identifier">scalajs</span><span>.</span><span class="identifier">dom</span><span>.*
@@ -141,20 +141,20 @@
 </span><span class="keyword">import</span><span> </span><span class="identifier">fs2</span><span>.*
 </span><span class="keyword">import</span><span> </span><span class="identifier">fs2</span><span>.</span><span class="identifier">concurrent</span><span>.*
 
-</span><span class="keyword">val</span><span> </span><span class="identifier">component</span><span> = </span><span class="type-name">SignallingRef</span><span>[</span><span class="type-name">IO</span><span>].</span><span class="identifier">of</span><span>(</span><span class="string-literal">&quot;world&quot;</span><span>).</span><span class="identifier">toResource</span><span>.</span><span class="identifier">flatMap</span><span> { </span><span class="identifier">nameRef</span><span> =&gt;
+</span><span class="keyword">val</span><span> </span><span class="identifier">component</span><span> = </span><span class="type-name">SignallingRef</span><span>[</span><span class="type-name">IO</span><span>].</span><span class="identifier">of</span><span>(</span><span class="string-literal">&quot;world&quot;</span><span>).</span><span class="identifier">toResource</span><span>.</span><span class="identifier">flatMap</span><span> { </span><span class="identifier">name</span><span> =&gt;
   </span><span class="identifier">div</span><span>(
     </span><span class="identifier">label</span><span>(</span><span class="string-literal">&quot;Your name: &quot;</span><span>),
     </span><span class="identifier">input</span><span>(
       </span><span class="identifier">placeholder</span><span> := </span><span class="string-literal">&quot;Enter your name here&quot;</span><span>,
       </span><span class="comment">// here, input events are run through the given Pipe
 </span><span>      </span><span class="comment">// this starts background fibers within the lifecycle of the &lt;input&gt; element
-</span><span>      </span><span class="identifier">onInput</span><span> --&gt; (</span><span class="identifier">_</span><span>.</span><span class="identifier">mapToTargetValue</span><span>.</span><span class="identifier">foreach</span><span>(</span><span class="identifier">nameRef</span><span>.</span><span class="identifier">set</span><span>))
+</span><span>      </span><span class="identifier">onInput</span><span> --&gt; (</span><span class="identifier">_</span><span>.</span><span class="identifier">mapToTargetValue</span><span>.</span><span class="identifier">foreach</span><span>(</span><span class="identifier">name</span><span>.</span><span class="identifier">set</span><span>))
     ),
     </span><span class="identifier">span</span><span>(
       </span><span class="string-literal">&quot; Hello, &quot;</span><span>,
       </span><span class="comment">// here, a Stream is rendered into the HTML
 </span><span>      </span><span class="comment">// this starts background fibers within the life cycle of the &lt;span&gt; element
-</span><span>      </span><span class="identifier">nameRef</span><span>.</span><span class="identifier">discrete</span><span>.</span><span class="identifier">map</span><span>(</span><span class="identifier">_</span><span>.</span><span class="identifier">toUpperCase</span><span>)
+</span><span>      </span><span class="identifier">name</span><span>.</span><span class="identifier">discrete</span><span>.</span><span class="identifier">map</span><span>(</span><span class="identifier">_</span><span>.</span><span class="identifier">toUpperCase</span><span>)
     )
   )
 }</span></code></pre>
@@ -171,7 +171,7 @@
 
         <hr style="margin-top: 30px"/>
         <footer style="font-size: 90%; text-align: center">
-          calico is a <a href="https://typelevel.org/">Typelevel</a> project distributed under the <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a> license.
+          calico is distributed under the <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a> license.
         </footer>
 
       </main>
